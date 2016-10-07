@@ -13,7 +13,7 @@ end
 
 get '/login' do
   session['oauth'] = Koala::Facebook::OAuth.new(
-    ENV['APP_ID'], ENV['APP_SECRET'], "#{request.base_url}/callback"
+    ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], "#{request.base_url}/callback"
   )
   redirect session['oauth'].url_for_oauth_code
 end
