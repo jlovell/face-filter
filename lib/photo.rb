@@ -17,6 +17,10 @@ class Photo
     Storage.put(filepath(type), data)
   end
 
+  def get(type, data)
+    Storage.put(filepath(type), data)
+  end
+
   def url(type)
     Storage.url_for(filepath(type))
   end

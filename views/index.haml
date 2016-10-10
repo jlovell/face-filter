@@ -1,48 +1,35 @@
-!!!5
-%head
-  %link{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity: 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin: 'anonymous'}
-  %link{ rel: 'stylesheet', type: 'text/css', href: 'vendor/css/slick.css' }
-  %link{ rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Permanent+Marker' }
+.header.clearfix{ style: 'margin: 20px 0;'}
+  %img{ src: 'comingout-logo.png', style: 'width: 100%; max-width: 400px;' }
+  &nbsp;
+  %span.pull-right{ style: "color: #333; font-size: 30px; font-family: 'Permanent Marker', cursive;" } express yourself
+
+.row
+  .col-sm-6.col-sm-push-6
+    %h4 How do you identify?
+    %p
+      .slider-dots
+        - %w(L G B T Q A).each_with_index do |letter, i|
+          %button.btn.btn-info.btn-lg.btn-fab{ 'data-slide' => i + 1 }= letter
+    %div.hidden-xs
+      %button.btn.btn-primary.btn-lg.btn-block.btn-raised Facebook!
+      %button.btn.btn-success.btn-lg.btn-block.btn-raised Tweet!
+      %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
+  .col-sm-6.col-sm-pull-6
+    .slider
+      - %w(lgbtqa L G B T Q A).each do |letter|
+        .slide
+          -#%img{ src: Photo.for_id(session[:user_id]).url(letter) }
+          %img{ src: "layers/#{letter.downcase}.png" }
+%div.visible-xs
+  %button.btn.btn-primary.btn-lg.btn-block.btn-raised Facebook!
+  %button.btn.btn-info.btn-lg.btn-block.btn-raised Tweet!
+  %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
+
+= haml :footer
+
 :css
-  .slider img { width: 100%; }
-
-%body
-  .container
-    .header.clearfix{ style: 'margin: 20px 0;'}
-      %img{ src: 'comingout-logo.png', width: 400 }
-      &nbsp;
-      %span.pull-right{ style: "font-size: 30px; font-family: 'Permanent Marker', cursive;" } express yourself
-
-    .row
-      .col-sm-6.col-sm-push-6
-        %h4 How do you identify?
-        %p
-          .slider-dots
-            - %w(L G B T Q A).each_with_index do |letter, i|
-              %button.btn.btn-success.btn-lg{ 'data-slide' => i }= letter
-        %div
-          %button.btn.btn-primary.btn-lg.btn-block Facebook!
-          %button.btn.btn-info.btn-lg.btn-block Tweet!
-          %button.btn.btn-warning.btn-lg.btn-block Download!
-      .col-sm-6.col-sm-pull-6
-        .slider
-          - %w(L G B T Q A).each do |letter|
-            .slide
-              %img{ src: Photo.for_id(session[:user_id]).url(letter) }
-
-  %script{ src: '//code.jquery.com/jquery-1.11.0.min.js' }
-  %script{ src: '//code.jquery.com/ui/1.12.1/jquery-ui.min.js' }
-  %script{ src: '//code.jquery.com/jquery-migrate-1.2.1.min.js' }
-  %script{ src: 'vendor/js/slick.min.js' }
-
-:javascript
-  $(document).ready(function(){
-    $slick = $('.slider').slick({
-      arrows: false,
-      fade: true,
-      speed: 0
-    });
-    $('.slider-dots button').on('click', function(){
-      $slick.slick('slickGoTo', $(this).data('slide'));
-    })
-  });
+  .slider {
+    background-image: url('#{Photo.for_id(session[:user_id]).url(:original)}');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
