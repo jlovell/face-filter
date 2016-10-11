@@ -17,12 +17,12 @@ class Photo
     Storage.put(filepath(type), data)
   end
 
-  def get(type, data)
-    Storage.put(filepath(type), data)
+  def get(type)
+    Storage.get(filepath(type || :overlay))
   end
 
   def url(type)
-    Storage.url_for(filepath(type))
+    Storage.url_for(filepath(type || :overlay))
   end
 
   private

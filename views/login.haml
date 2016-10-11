@@ -1,20 +1,7 @@
-:css
-  .callout {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .callout a { text-transform: none; }
-
-
-
-.header.clearfix{ style: 'margin: 20px 0;'}
-  %img{ src: 'comingout-logo.png', width: 400 }
-  &nbsp;
-  %span.pull-right{ style: "font-size: 30px; font-family: 'Permanent Marker', cursive;" } express yourself
-
-.callout
-  %a.btn.btn-info.btn-large.btn-raised{ href: "/login" } Login to create your own!
+.login-callout
+  %a.btn.btn-facebook.btn-large.btn-raised{ href: "/login" }
+    %i.fa.fa-facebook-official
+    Login to create your own!
 
 .row
   .col-xs-4
@@ -23,5 +10,3 @@
     %img{ src: 'example_2.jpg', style: 'width: 100%;'}
   .col-xs-4
     %img{ src: 'example_3.jpg', style: 'width: 100%;'}
-
-= haml :footer

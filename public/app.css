@@ -1,0 +1,48 @@
+h1, h2, h3, h4, h5, h6, p, body {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+body {
+  background-color: white;
+}
+.body-wrapper {
+  background-color: #EEE;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.footer-wrapper {
+  padding-top: 20px;
+}
+.btn.btn-facebook {
+  background-color: #3B5998;
+  color: rgba(255,255,255, 0.84);
+}
+.btn.btn-facebook:hover {
+  background-color: #5573B2 !important;
+}
+.btn.btn-twitter {
+  background-color: #00ACED;
+  color: rgba(255,255,255, 0.84);
+}
+.btn.btn-twitter:hover {
+  background-color: #1AC6FF !important;
+}
+.footer {
+  font-size: 90%;
+}
+
+/* Login page */
+
+.login-callout {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.login-callout a {
+  text-transform: none;
+}
+
+/* Main page */
+
+.slider img { width: 100%; }
+

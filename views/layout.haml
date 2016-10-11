@@ -1,25 +1,36 @@
 !!!5
-%html.no-js{:lang => "en"}
+%html.no-js{:lang => 'en'}
   %head
-    %meta{:charset => "utf-8"}
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
+    %meta{:charset => 'utf-8'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+    %title Coming Out
+
+    = haml :opengraph
 
     %link{ rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity: 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin: 'anonymous'}
-    %link{ rel: 'stylesheet', type: 'text/css', href: 'vendor/css/slick.css' }
-    %link{ rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Permanent+Marker' }
-    %link{ rel: "stylesheet", type: "text/css", href: "vendor/css/bootstrap-material-design.min.css" }
-    %link{ rel: "stylesheet", type: "text/css", href: "vendor/css/ripples.min.css" }
-    <style>.slider img { width: 100%; }</style>
+    %link{ rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Permanent+Marker|Montserrat' }
+    %link{ rel: 'stylesheet', type: 'text/css', href: '/vendor/css/slick.css' }
+    %link{ rel: 'stylesheet', type: 'text/css', href: '/vendor/css/bootstrap-material-design.min.css' }
+    %link{ rel: 'stylesheet', type: 'text/css', href: '/vendor/css/ripples.min.css' }
+    %link{ rel: 'stylesheet', type: 'text/css', href: '/app.css' }
+    %script{ src: 'https://use.fontawesome.com/e2e5e35e05.js' }
   %body
-    .container
-      = yield
+    .header-wrapper
+      .container
+        = haml :header
+    .body-wrapper
+      .container
+        = yield
+    .footer-wrapper
+      .container
+        = haml :footer
 
     %script{ src: '//code.jquery.com/jquery-1.11.0.min.js' }
     %script{ src: '//code.jquery.com/ui/1.12.1/jquery-ui.min.js' }
     %script{ src: '//code.jquery.com/jquery-migrate-1.2.1.min.js' }
-    %script{ src: 'vendor/js/slick.min.js' }
-    %script{ src: 'vendor/js/material.min.js' }
-    %script{ src: 'vendor/js/ripples.min.js' }
+    %script{ src: '/vendor/js/slick.min.js' }
+    %script{ src: '/vendor/js/material.min.js' }
+    %script{ src: '/vendor/js/ripples.min.js' }
 
 :javascript
   $(document).ready(function(){
@@ -32,7 +43,7 @@
       $slick.slick('slickGoTo', $(this).data('slide'));
     })
     $.material.init()
-    $(".btn").mouseup(function(){
+    $('.btn').mouseup(function(){
         $(this).blur();
     })
   });

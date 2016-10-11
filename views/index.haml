@@ -1,31 +1,24 @@
-.header.clearfix{ style: 'margin: 20px 0;'}
-  %img{ src: 'comingout-logo.png', style: 'width: 100%; max-width: 400px;' }
-  &nbsp;
-  %span.pull-right{ style: "color: #333; font-size: 30px; font-family: 'Permanent Marker', cursive;" } express yourself
-
 .row
   .col-sm-6.col-sm-push-6
     %h4 How do you identify?
     %p
       .slider-dots
         - %w(L G B T Q A).each_with_index do |letter, i|
-          %button.btn.btn-info.btn-lg.btn-fab{ 'data-slide' => i + 1 }= letter
+          %button.btn.btn-success.btn-lg.btn-fab{ 'data-slide' => i + 1 }= letter
     %div.hidden-xs
-      %button.btn.btn-primary.btn-lg.btn-block.btn-raised Facebook!
-      %button.btn.btn-success.btn-lg.btn-block.btn-raised Tweet!
+      %a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
+      %button.btn.btn-twitter.btn-lg.btn-block.btn-raised Tweet!
       %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
   .col-sm-6.col-sm-pull-6
     .slider
       - %w(lgbtqa L G B T Q A).each do |letter|
         .slide
           -#%img{ src: Photo.for_id(session[:user_id]).url(letter) }
-          %img{ src: "layers/#{letter.downcase}.png" }
+          %img{ src: "/layers/#{letter.downcase}.png" }
 %div.visible-xs
-  %button.btn.btn-primary.btn-lg.btn-block.btn-raised Facebook!
-  %button.btn.btn-info.btn-lg.btn-block.btn-raised Tweet!
+  %a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
+  %button.btn.btn-twitter.btn-lg.btn-block.btn-raised Tweet!
   %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
-
-= haml :footer
 
 :css
   .slider {

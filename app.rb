@@ -1,3 +1,5 @@
+ENV ||= {}
+ENV['PORT'] = '5000'
 require 'sinatra/base'
 require 'koala'
 require 'haml'
@@ -42,5 +44,9 @@ class FaceFilter < Sinatra::Application
   get '/rebuild' do
     ImageGenerationWorker.perform_async(session['user_id'], session['access_token'])
     redirect '/'
+  end
+
+  get '/face/:id/:type' do
+    haml(:index)
   end
 end
