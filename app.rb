@@ -62,4 +62,10 @@ class FaceFilter < Sinatra::Application
               :filename => 'comingout.jpg')
   end
 
+  get '/share/:id/?:type?' do
+    @graph_image = "#{request.base_url}/image/#{params[:id]}"
+    @graph_image += "/#{params[:type]}" if params[:type]
+    signed_in? ? redirect('/') : haml(:login)
+  end
+
 end
