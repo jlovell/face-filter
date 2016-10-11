@@ -5,20 +5,28 @@
       .slider-dots
         - %w(L G B T Q A).each_with_index do |letter, i|
           %button.btn.btn-success.btn-lg.btn-fab{ 'data-slide' => i + 1 }= letter
-    %div.hidden-xs
-      %a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
-      %button.btn.btn-twitter.btn-lg.btn-block.btn-raised Tweet!
-      %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
+    .shares.hidden-xs
+      -#%a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
+      %a.btn.btn-twitter.btn-lg.btn-block.btn-raised{ href: "http://www.twitshot.com/?url=http%3A%2F%2Ffaces.comingout.space%2F&text=Happy%20coming%20out%20day!&image=http%3A%2F%2Ffaces.comingout.space%2Fimage%2F#{session[:user_id]}&count=true&hide=true", target: '_blank'} Tweet!
+      %a.btn.btn-download.btn-warning.btn-lg.btn-block.btn-raised{ href: "http://faces.comingout.space/image/#{session[:user_id]}", target: '_blank' }
+        Download to share
+        %i.fa.fa-snapchat-ghost
+        %i.fa.fa-instagram
+        %i.fa.fa-facebook
   .col-sm-6.col-sm-pull-6
     .slider
       - %w(lgbtqa L G B T Q A).each do |letter|
         .slide
           -#%img{ src: Photo.for_id(session[:user_id]).url(letter) }
           %img{ src: "/layers/#{letter.downcase}.png" }
-%div.visible-xs
-  %a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
-  %button.btn.btn-twitter.btn-lg.btn-block.btn-raised Tweet!
-  %button.btn.btn-warning.btn-lg.btn-block.btn-raised Download!
+.shares.visible-xs
+  -#%a.btn.btn-facebook.btn-lg.btn-block.btn-raised{ href: "https://www.facebook.com/sharer/sharer.php?u=http://faces.comingout.space/face/#{session[:user_id]}"} Facebook!
+  %a.btn.btn-twitter.btn-lg.btn-block.btn-raised{ href: "http://www.twitshot.com/?url=http%3A%2F%2Ffaces.comingout.space%2F&text=Happy%20coming%20out%20day!&image=http%3A%2F%2Ffaces.comingout.space%2Fimage%2F#{session[:user_id]}&count=true&hide=true", target: '_blank'} Tweet!
+  %a.btn.btn-download.btn-warning.btn-lg.btn-block.btn-raised{ href: "http://faces.comingout.space/image/#{session[:user_id]}", target: '_blank' }
+    Download to share
+    %i.fa.fa-snapchat-ghost
+    %i.fa.fa-instagram
+    %i.fa.fa-facebook
 
 :css
   .slider {
@@ -28,3 +36,43 @@
   }
   .slider-dots { white-space: nowrap; }
   .slider-dots .btn-fab { width: 50px; min-width: 50px; height: 50px; }
+
+:javascript
+  window.userID = '#{session[:user_id]}'
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1612195222407728',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function sharefbimage() {
+    FB.ui(
+    {
+              method: 'share',
+              name: 'Facebook Dialogs',
+              href: $(location).attr('href'),
+              link: 'http://faces.comingout.space',
+              picture: 'http://faces.comingout.space/image/2987427839770/g',
+              caption: 'Ishelf Book',
+              description: 'your description'
+          },
+          function (response) {
+              if (response && response.post_id) {
+                  alert('success');
+              } else {
+                 alert('error');
+              }
+          }
+        );
+      }

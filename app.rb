@@ -54,4 +54,12 @@ class FaceFilter < Sinatra::Application
     content_type 'image/jpg'
     Photo.for_id(params[:id]).get(params[:type])
   end
+
+  get '/download/:id/?:type?' do
+    content_type 'image/jpeg'
+    send_file(Magick::Image.from_blob(Photo.for_id(params[:id]).get(params[:type])).first.to_blob,
+              :disposition => 'attachment',
+              :filename => 'comingout.jpg')
+  end
+
 end
