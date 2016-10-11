@@ -2,5 +2,6 @@
 %meta{ property: "og:type", content: "website" }
 %meta{ property: "og:title", content: "Coming Out - Photo Filter" }
 %meta{ property: "og:description", content: "Express yourself with a photo" }
-%meta{ property: "og:image", content: "http://faces.comingout.space/image/#{params[:id]}/#{params[:type]}" }
 %meta{ property: "fb:app_id", content: ENV['FACEBOOK_APP_ID'] }
+- image_path = request.referrer && request.referrer.match(/comingout.space\/face/) ? request.referrer.sub('face', 'image') : "http://faces.comingout.space/example_1.jpg"
+%meta{ property: "og:image", content: image_path }

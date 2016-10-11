@@ -46,7 +46,12 @@ class FaceFilter < Sinatra::Application
     redirect '/'
   end
 
-  get '/face/:id/:type' do
-    haml(:index)
+  get '/face/:id/?:type?' do
+    signed_in? ? haml(:index) : haml(:login)
+  end
+
+  get '/image/:id/?:type?' do
+    content_type 'image/jpg'
+    Photo.for_id(params[:id]).get(params[:type])
   end
 end
