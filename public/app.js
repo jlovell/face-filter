@@ -16,5 +16,12 @@ $('.slider-dots button').on('click', function(){
     'href',
     'http://faces.comingout.space/image/' + window.userID + '/' + $(this).text()
   )
+})
 
+$('.btn-facebook').on('click', function(e){
+  e.preventDefault();
+  FB.ui({
+    method: 'share',
+    href: $('.btn-download').attr('href'),
+  }, function(response){});
 })
