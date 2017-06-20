@@ -7,8 +7,6 @@ body {
 }
 .body-wrapper {
   background-color: #EEE;
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 .footer-wrapper {
   padding-top: 20px;
@@ -29,6 +27,12 @@ body {
 }
 .footer {
   font-size: 90%;
+}
+@media (min-width: 768px) {
+  .body-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 /* Login page */

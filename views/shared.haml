@@ -1,0 +1,14 @@
+%meta{ property: "fb:app_id", content: ENV['FACEBOOK_APP_ID'] }
+%meta{ property: "og:url", content: "http://faces.comingout.space" }
+%meta{ property: "og:type", content: "website" }
+%meta{ property: "og:title", content: "Coming Out - Photo Filter" }
+%meta{ property: "og:description", content: "Express yourself with a photo" }
+%meta{ property: "og:image", content: @requested_photo_url }
+
+.login-callout
+  %a.btn.btn-facebook.btn-large.btn-raised{ href: "/login" }
+    %i.fa.fa-facebook-official
+    Login to create your own!
+.row
+  .col-sm-6.col-sm-offset-3
+    %img{ src: @requested_photo_url, style: 'width: 100%;'}

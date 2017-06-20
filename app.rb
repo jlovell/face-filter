@@ -47,7 +47,8 @@ class FaceFilter < Sinatra::Application
   end
 
   get '/face/:id/?:type?' do
-    signed_in? ? haml(:index) : haml(:login)
+    @requested_photo_url = Photo.for_id(params[:id]).url(params[:type])
+    haml(:shared)
   end
 
   get '/image/:id/?:type?' do
